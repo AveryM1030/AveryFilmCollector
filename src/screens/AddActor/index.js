@@ -23,7 +23,7 @@ const AddActor = props => {
         }
         
         try {
-            database.addActor(fName, lName);
+            database.addActor(fname, lname);
         } catch (error) {
             console.log('Error adding actor ' + error);
         }
@@ -36,17 +36,17 @@ const AddActor = props => {
     <View style={styles.container}>
         <View style={styles.topContainer}>
             <TextInput 
-                value={firstName}
+                value={fname}
                 onChangeText={value => setfName(value)}
-                style={styles.firstname}
+                style={styles.fname}
                 clearButtonMode={'while-editing'}
                 placeholder={'Enter First Name'}
                 placeholderTextColor={'grey'}
             />
             <TextInput 
-                value={lastName}
+                value={lname}
                 onChangeText={value => setlName(value)}
-                style={styles.lastname}
+                style={styles.lname}
                 clearButtonMode={'while-editing'}
                 placeholder={'Enter Last Name'}
                 placeholderTextColor={'grey'}

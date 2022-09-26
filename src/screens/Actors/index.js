@@ -42,8 +42,8 @@ const ActorsScreen = props => {
                 let item = res.rows.item(i);
                 results.push({
                   id: item.id,
-                  firstname: item.firstname,
-                  lastname: item.lastname,
+                  fname: item.fname,
+                  lname: item.lname,
                 });
               }
               // assign results array to lists state variable
