@@ -7,17 +7,17 @@ const Actor = props => {
     const post = props.post;
 
     const onPress = () => {
-        console.log(post.firstname + " " + post.lastname);
+        console.log(post.fname + " " + post.lname);
     }
 
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.touchable} onPress={onPress}>
             <View style={{flex: 1}}>
-                <Text style={styles.firstname}>{post.firstname}</Text>
+                <Text style={styles.fname}>{post.fname}</Text>
             </View>
             <View style={{flex: 1}}>
-                <Text style={styles.lastname}>{post.lastname}</Text>
+                <Text style={styles.lname}>{post.lname}</Text>
             </View>
         </TouchableOpacity>
     </View>
