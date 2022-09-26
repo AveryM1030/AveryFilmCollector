@@ -7,71 +7,71 @@ import styles from './styles';
 import { openDatabase } from "react-native-sqlite-storage";
 
 // use hook to create database
-const shopperDB = openDatabase({name: 'Actors.db'});
-const listsTableName = 'actors';
+const filmCollectorDB = openDatabase({name: 'FilmCollector.db'});
+const actorsTableName = 'actors';
 
 const ActorsScreen = props => {
 
   const navigation = useNavigation();
 
-  const [lists, setLists] = useState([]);
+  const [actors, setActors] = useState([]);
 
   useEffect(() => {
-     const listener = navigation.addListener('focus', () => {
-      // declare an empty array that will store the results of the 
+    const listener = navigation.addListener('focus', () => {
+      // declare an empty array that will store the results of the
       // SELECT
       let results = [];
-      // declare a transation the will execute the SELECT
-      actorsDB.transaction(txn => {
+      // declare a transation that will execute the SELECT
+      filmCollectorDB.transaction(txn => {
         // execute SELECT
         txn.executeSql(
-          `SELECT * FROM ${listsActorName}`,
+          `SELECT * FROM ${actorsTableName}`,
           [],
-          // callback function to handle the results from the 
-          // SELECT
+          // callback function to handle the results from the
+          // SELECT s
           (_, res) => {
             // get number of rows of data selected
             let len = res.rows.length;
             console.log('Length of lists ' + len);
             // if more than one row was returned
             if (len > 0){
-              // loop through thr rows
+              // loop through the rows
               for (let i = 0; i < len; i++){
                 // push a row of data at a time onto the
                 // results array
                 let item = res.rows.item(i);
                 results.push({
                   id: item.id,
-                  fname: item.fname,
-                  lname: item.lname,
+                  firstname: item.firstname,
+                  lastname: item.lastname,
                 });
               }
               // assign results array to lists state variable
-              setLists(results);
+              setActors(results);
             } else {
               // if no rows of data were returned,
               // set lists state variable to an empty array
-              setLists([]);
+              setActors([]);
             }
           },
           error => {
             console.log('Error getting actors ' + error.message);
-          }
+          },
         )
       });
-     });
-     return listener;
+    });
+    return listener;
   });
 
   return (
     <View style={styles.container}>
       <View>
         <FlatList 
-          data={lists}
-          renderItem={({item}) => <List post={item} />}
+          data={actors}
+          renderItem={({item}) => <Actor post={item} />}
           keyExtractor={item => item.id}
         />
-        </View>
+      </View>
         <View style={styles.bottom}>
             <TouchableOpacity 
                 style={styles.button}

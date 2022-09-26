@@ -1,8 +1,7 @@
 import React from 'react';
-import ActorsScreen from '../screens/Actor';
+import ActorsScreen from '../screens/Actors';
 import FilmsScreen from '../screens/Films';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AddActor from '../screens/AddActor';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,7 +10,7 @@ const TabNavigator = props => {
   return (
     <Tab.Navigator
         screenOptions={{
-            tabBArActiveTintColor: '#f15454',
+            tabBarActiveTintColor: 'blue',
             tabBarLabelStyle: {
                 flex: 1,
                 fontSize: 15,
@@ -23,8 +22,8 @@ const TabNavigator = props => {
             tabBarIconStyle: {display: 'none'},
         }}
     >
-        <Tab.Screen name={'Actor'} component={ActorsScreen}/>
-        <Tab.Screen name={'Film'} component={ItemsScreen}/>
+        <Tab.Screen name={'Actors'} component={ActorsScreen}/>
+        <Tab.Screen name={'Films'} component={FilmsScreen}/>
     </Tab.Navigator>
   );
 };

@@ -29,7 +29,7 @@ const HomeScreen = () => {
       <View style={styles.bottom}>
         <Pressable
           style={styles.button}
-          onPress={() => console.log('Enter FilmCollector!')}>
+          onPress={() => navigation.navigate('Enter FilmCollector!')}>
           <Text style={styles.buttonText}>Enter FilmCollector!</Text>
         </Pressable>
       </View>

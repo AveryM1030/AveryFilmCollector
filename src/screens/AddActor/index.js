@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View , Text, TextInput, Pressable } from 'react-native';
+import { View, Text, TextInput, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 
@@ -9,26 +9,26 @@ const AddActor = props => {
 
     const navigation = useNavigation();
 
-    const [fname, setFname] = useState('');
-    const [lname, setLname] = useState('');
-   
-    const on = () => {
+    const [fName, setFName] = useState('');
+    const [lName, setLName] = useState('');
+
+    const onActorAdd = () => {
         if (!fname){
-            alert('Please enter first name.')
+            alert('Please enter a first name.');
             return;
         }
         if (!lname){
-            alert('Please enter last name.')
+            alert('Please enter a last name.');
             return;
         }
-
-        try {
-            database.addActor(fname, lname)
-        } catch (error) {
-            console.log('Error adding actors name ' + error);
-        }
         
-        alert(fname + ' Added!');
+        try {
+            database.addActor(fName, lName);
+        } catch (error) {
+            console.log('Error adding actor ' + error);
+        }
+
+        alert(fname + " " + lname + ' Added!');
         navigation.navigate('Enter FilmCollector!');
     }
 
@@ -36,24 +36,24 @@ const AddActor = props => {
     <View style={styles.container}>
         <View style={styles.topContainer}>
             <TextInput 
-                value={fname}
-                onChangeText={value => setName(value)}
-                style={styles.name}
+                value={firstName}
+                onChangeText={value => setfName(value)}
+                style={styles.firstname}
                 clearButtonMode={'while-editing'}
-                placeholder={'Enter List Name'}
+                placeholder={'Enter First Name'}
                 placeholderTextColor={'grey'}
             />
-             <TextInput 
-                value={lname}
-                onChangeText={value => setStore(value)}
-                style={styles.store}
+            <TextInput 
+                value={lastName}
+                onChangeText={value => setlName(value)}
+                style={styles.lastname}
                 clearButtonMode={'while-editing'}
-                placeholder={'Enter Store'}
+                placeholder={'Enter Last Name'}
                 placeholderTextColor={'grey'}
             />
         </View>
         <View style={styles.bottomContainer}>
-            <Pressable style={styles.button} onPress={onListAdd}>
+            <Pressable style={styles.button} onPress={onActorAdd}>
                 <Text style={styles.buttonText}>Add</Text>
             </Pressable>
         </View>
